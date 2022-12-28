@@ -45,9 +45,16 @@ myUID=0
 def getClassComponent(week,day,time,className,msg,loc):
     aft_days = bastTime + datetime.timedelta(weeks=week,days=day)
     myTime = aft_days.strftime('%Y%m%d')
-    hour=time.split('-')
-    begin=myTime+startTime[int(hour[0])-1]
-    end=myTime+endTime[int(hour[1])-1]
+
+    print(time)
+    if time.find('-')!=-1:
+        hour=time.split('-')
+        begin=myTime+startTime[int(hour[0])-1]
+        end=myTime+endTime[int(hour[1])-1]
+    else:
+        begin = myTime+startTime[int(time)-1]
+        end  =  myTime+startTime[int(time)-1]
+
     tmpClass = Event()
     global myUID
     tmpClass.add('UID', str(myUID))  # ID
